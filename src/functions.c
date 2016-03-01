@@ -22,17 +22,49 @@ int getRight(int idx){
 	return (idx*2)+1;
 }
 
-int switchValue(int tab[], int idx1, int idx2){
+void switchValue(int tab[], int idx1, int idx2){
 	int tmp;
 
 	tmp = tab[idx1];
     tab[idx1] = tab[idx2];
     tab[idx2] = tmp;
-
-    return idx2;
 }
 
-void buildTree(int input[], int size, int output[]){
+void printTab(int tab[]){
+	int i;
+	printf("\n");
+	
+	for (i = 1 ; i < 18 ; i++)
+    {
+        printf("%d ", tab[i]);
+    }
 
+    printf("\n");
 }
+
+void buildTree(int input[], int output[]){
+	int i;
+	int size = input[0];
+	output[0] = input[0];
+	int currentIdx;
+
+	for(i=1; i<=size ; i++)
+	{
+		output[i] = input[i];
+		int fatherIdx = getFather(i);
+		int father = output[fatherIdx];
+		int current =  output[i];
+		currentIdx = i;
+
+		while (fatherIdx > 0 && father > current) 
+		{
+			switchValue(output, fatherIdx, currentIdx);
+			currentIdx = fatherIdx;
+			fatherIdx = getFather(currentIdx);
+			father = output[fatherIdx];
+		}
+		printTab(output);
+	}
+}
+
 
