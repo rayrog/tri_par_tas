@@ -1,6 +1,5 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-
-
-#endif 
+void sort(int input[], int output[]);
+#endif
